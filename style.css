@@ -1,0 +1,42 @@
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #fdfdfd;
+    margin: 0;  /*바깥 여백 제거*/
+    padding: 0; /*안쪽 여백 제거*/
+}
+
+header {
+    background-color: #003366;
+    color: white; /*글씨색상*/
+    padding: 20px; /*내부 여백*/
+    text-align: center; /*중앙 정렬*/
+}
+
+nav ul {
+    list-style: none; /*동그라미 제거*/
+    padding: 0;
+    display: flex; /*가로 정렬*/
+    justify-content: center; /*가운데 정렬*/
+    gap: 20px; /*메뉴 간 간격*/
+}
+
+nav a {
+    text-decoration: none; /*밑줄 제거*/
+    color: white;
+    font-weight: bold; /*굵은 글씨*/
+}
+
+main {
+    padding: 40px;
+}
+
+img {
+    max-width: 100%; /*부모 요소보다 커지지 않음*/
+    height: auto; /*비율 유지하면서 줄어듦*/
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #eee;
+}
