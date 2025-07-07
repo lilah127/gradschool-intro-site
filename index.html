@@ -2,42 +2,85 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>성균관대 전기공학과 대학원 소개</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>성균관대 전기공학과 대학원</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <header>
-    <h1>성균관대학교 전기공학과 대학원 연구실</h1>
-    <nav>
-        <ul>
-            <li><a href="index.html">홈</a></li>
-            <li><a href="about.html">소개</a></li>
-            <li><a href="professor.html">교수님</a></li>
-            <li><a href="contact.html">연락처</a></li>
-        </ul>
+<body class="flex flex-col">
+  <!-- 상단 -->
+  <aside class="w-full bg-white text-white p-2 border-b border-gray-300">
+    <nav class="max-w-screen-xl mx-auto flex items-center justify-between py-4">
+      <!-- 좌측 로고 -->
+      <a href="index.html" class="pl-4 flex-shrink-0 min-w-[150px]">
+        <img src="./images/Logo.png" alt="Logo" class="w-[150px]"/>
+      </a>
+      <!-- 우측 메뉴 -->
+      <div class="flex space-x-14">
+        <a href="Members.html" class="hover:text-blue-700 text-[#1A2C75] text-lg">MEMBERS</a>
+        <a href="Research.html" class="hover:text-blue-700 text-[#1A2C75] text-lg">RESEARCH</a>
+        <a href="Admissions.html" class="hover:text-blue-700 text-[#1A2C75] text-lg">ADMISSIONS</a>
+        <a href="News.html" class="hover:text-blue-700 text-[#1A2C75] text-lg">NEWS</a>
+        <a href="Contact.html" class="hover:text-blue-700 text-[#1A2C75] text-lg pr-20">CONTACT</a>
+      </div>
     </nav>
-  </header>
+  </aside>
+  <div class="w-full flex flex-col min-h-screen">
+    <!-- 메인 콘텐츠 -->
+    <main class="flex-1">
+      <!-- Hero섹션 -->
+      <div class="relative w-full h-[300px]">
+        <img src="./images/main.jpg" alt="main" class="w-full h-[300px] object-cover object-center"/>
+          <div class="absolute inset-0 flex flex-col justify-end items-end pr-16 pb-10 text-white text-right bg-black/30">
+            <h1 class="text-[26px] font-bold">Welcome to the Energy & Nano Photovoltaics Lab at Sungkyunkwan University.</h1>
+            <p class="text-lg mt-2">Our research aims to advance next-generation energy solutions through nanoscale engineering,
+              <br>with a particular focus on high-efficiency solar cells, smart materials,and integrated photonic systems.</p>
+          </div>
+        </div>
 
-  <main>
-    <section>
-        <h2>연구실 소개</h2>
-            <p>연구실 어쩌고 저쩌고 냐냐냥</p>
-        <img src="images\lab-photo.jpg" alt="연구실 사진"/>
-    </section>
-
-    <section>
-        <h2>연구 분야</h2>
-        <ul>
-            <li>전기</li>
-            <li>전기의 고통</li>
-            <li>전기의 세기</li>
-        </ul>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 Kim ye-won</p>
-  </footer>
-
+        <!-- 중간 소개 섹션 -->
+         <div class="max-w-screen-lg mx-auto px-10 py-16 text-[#000000]">
+          <h3 class="text-xl font-semibold mb-2">1. About the Lab</h3>
+          <p class="font-thin leading-normal mb-8">The Energy & Nano Photovoltaics Lab at Sungkyunkwan University’s Department of Electrical and Computer Engineering focuses on next-generation energy technologies.
+            Our research explores high-efficiency solar cells, nanomaterials, and optoelectronic systems that address global energy challenges.</p>
+          <h3 class="text-xl font-semibold mb-2">2. Research Focus</h3>
+          <p class="font-thin leading-normal mb-8">We specialize in perovskite photovoltaics, nano-device integration, and smart energy systems. Through experimental innovation and theoretical analysis, 
+            we aim to translate advanced materials and device research into practical energy solutions. Collaboration with international research networks plays a key role in our work.</p>
+          <h3 class="text-xl font-semibold mb-2">3. Education & Career Path</h3>
+          <p class="font-thin leading-normal mb-8">Graduate students receive rigorous training through academic research, journal publications, and collaborative industry projects.
+             Our alumni pursue careers in leading tech companies, national research institutes, and prestigious universities worldwide.</p>
+         </div>
+         <!-- 하단 뉴스 섹션 -->
+         <div>
+          <section class="max-w-screen-lg mx-auto px-10 py-16">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-2xl font-semibold">News</h3>
+              <a href="News.html" class="text-sm text-gray-400 hover:underline">View more</a>
+            </div>
+            
+            <table class="w-full table-auto border-t border-gray-300 text-left">
+              <thead>
+                <tr class="text-gray-500 text-sm">
+                  <th class="py-2">title</th>
+                  <th class="py-2 text-right">date</th>
+                </tr>
+              </thead>
+              <tbody class="text-black text-base">
+                <!-- 여기에 뉴스 항목 <tr> 추가해 -->
+                <!-- 예시:
+                <tr class="border-t">
+                  <td class="py-2">안녕하세요 ~</td>
+                  <td class="py-2 text-right">2025.06.19</td>
+                </tr>
+                -->
+              
+              </tbody>
+            </table>
+          </section>
+        </div>
+      </main>
+    <footer class="text-center text-sm text-gray-500 py-6">
+      <p>&copy; 2025 Kim ye-won</p>
+    </footer>
+  </div>
 </body>
 </html>

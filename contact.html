@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>성균관대 전기공학과 대학원</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=bc7f438748cd29f3c9fbc8043235b8a7"></script>
+  <style>
+    #map {  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  height: 500px; }
+  </style>
+</head>
+<body class="flex flex-col">
+  <!-- 상단 -->
+  <aside class="w-full bg-white text-white p-2 border-b border-gray-300">
+    <nav class="max-w-screen-xl mx-auto flex items-center justify-between py-4">
+      <!-- 좌측 로고 -->
+      <a href="index.html" class="pl-4 flex-shrink-0 min-w-[150px]">
+        <img src="./images/Logo.png" alt="Logo" class="w-[150px]" />
+      </a>
+      <!-- 우측 메뉴 -->
+      <div class="flex space-x-14">
+        <a href="Members.html" class="hover:text-blue-700 text-[#1A2C75] text-lg">MEMBERS</a>
+        <a href="Research.html" class="hover:text-blue-700 text-[#1A2C75] text-lg">RESEARCH</a>
+        <a href="Admissions.html" class="hover:text-blue-700 text-[#1A2C75] text-lg">ADMISSIONS</a>
+        <a href="News.html" class="hover:text-blue-700 text-[#1A2C75] text-lg">NEWS</a>
+        <a href="Contact.html" class="hover:text-blue-700 text-[#1A2C75] text-lg pr-20">CONTACT</a>
+      </div>
+    </nav>
+  </aside>
+  <div class="max-w-screen-xl mx-auto px-4">
+
+  <h1 class="pt-5 pb-2 text-xl tracking-tighter text-left">CONTACT</h1>
+  <!-- 지도 영역 -->
+  <div id="map" style="width: 800px; height: 500px; margin: 0 auto; border-radius: 8px;"></div>
+  
+  <script>
+    var container = document.getElementById('map');
+    var options = {
+      center: new kakao.maps.LatLng(37.293620, 126.976450),
+      level: 3
+    };
+    var map = new kakao.maps.Map(container, options);
+
+    // 마커 생성
+    var markerPosition = new kakao.maps.LatLng(37.293620, 126.976450);
+    var marker = new kakao.maps.Marker({
+      position: markerPosition,
+      map: map
+    });
+
+    // 정보창
+    var infowindow = new kakao.maps.InfoWindow({
+      content: '<div style="padding: 8px 12px; font-size: 13px; white-space: nowrap;">성균관대학교 제1공학관 21517호</div>'
+    });
+    infowindow.open(map, marker);
+  </script>
+  <!-- 지도 아래 정보 -->
+<div class="flex flex-col items-center text-center mt-6 space-y-2 text-sm text-gray-700">
+  <!-- 주소 -->
+  <div class="flex items-center space-x-2">
+    <img src="./images/icon/map.svg" alt="Location" class="w-4 h-4" />
+    <span>경기도 수원시 장안구 서부로 2066 성균관대학교 자연과학캠퍼스 1공학관 21517호</span>
+  </div>
+
+  <!-- 행정 부서 -->
+  <div class="flex items-center space-x-2">
+    <img src="./images/icon/phone-solid.svg" alt="Mail" class="w-4 h-4" />
+    <span>-</span>
+  </div>
+
+  <!-- 담당 교수 -->
+  <div class="flex items-center space-x-2">
+    <img src="./images/icon/mail-solid.svg" alt="Professor" class="w-4 h-4" />
+    <span>행정 부서 - 손은경 선생님 <a href="mailto:kyung0149@skku.edu" class="text-blue-700 underline">kyung0149@skku.edu</a>
+       황서희 (Combined M.S. - Ph.D) <a href="mailto:hshee69@skku.edu" class="text-blue-700 underline">hshee69@skku.edu</a></span>
+  </div>
+</div>
+</div>
+</body>
+<footer class="text-center text-sm text-gray-500 py-6">
+      <p>&copy; 2025 Kim ye-won</p>
+</footer>
+</body>
+</html>
