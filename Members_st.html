@@ -6,21 +6,22 @@
   <title>성균관대 전기공학과 대학원</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="flex flex-col">
-  <!-- 상단 -->
-  <aside class="w-full bg-white text-white p-2 border-b border-gray-300">
-    <nav class="max-w-screen-xl mx-auto flex items-center justify-between py-4">
-      <!-- 좌측 로고 -->
-      <a href="index.html" class="pl-4 flex-shrink-0 min-w-[150px]">
-        <img src="./images/Logo.png" alt="Logo" class="w-[150px]" />
-      </a>
-      <!-- 우측 메뉴 -->
-      <div class="flex space-x-14">
-        <a href="Members.html" class="hover:text-blue-700 text-[#1A2C75] text-lg">MEMBERS</a>
-        <a href="Research.html" class="hover:text-blue-700 text-[#1A2C75] text-lg">RESEARCH</a>
-        <a href="Admissions.html" class="hover:text-blue-700 text-[#1A2C75] text-lg">ADMISSIONS</a>
-        <a href="News.html" class="hover:text-blue-700 text-[#1A2C75] text-lg">NEWS</a>
-        <a href="Contact.html" class="hover:text-blue-700 text-[#1A2C75] text-lg pr-20">CONTACT</a>
-      </div>
-    </nav>
-  </aside>
+<body class="flex flex-col pt-[80px]">
+    <div id="header"></div>
+    <main></main>
+    <div id="footer"></div>
+  <script>
+    fetch('header.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('header').innerHTML = data;
+      });
+
+    fetch('footer.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      });
+  </script>
+  </body>
+</html>
