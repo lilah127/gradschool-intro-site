@@ -8,21 +8,111 @@
 </head>
 <body class="flex flex-col pt-[80px]">
   <div id="header"></div>
-  </body>
-<div id="footer"></div>
 
+  <!-- Hero 섹션 -->
+  <div class="relative w-full h-[300px]">
+    <img src="./images/main5.jpg" alt="main" class="w-full h-[300px] object-cover object-center"/>
+    <div class="absolute inset-0 flex flex-col justify-end items-end pr-16 pb-10 text-white text-right bg-black/30">
+      <h1 class="text-[26px] font-bold">Welcome to the Energy & Nano Photovoltaics Lab at Sungkyunkwan University.</h1>
+      <p class="text-lg mt-2">Our research aims to advance next-generation energy solutions through nanoscale engineering,
+        <br>with a particular focus on high-efficiency solar cells, smart materials,and integrated photonic systems.</p>
+    </div>
+  </div>
+
+  <!-- 스크립트 -->
+   <main class="max-w-5xl mx-auto px-6 py-16">
+  <table class="w-full table-fixed border-t border-gray-300" id="news-table">
+      <thead>
+        <tr class="text-left text-gray-700 text-sm border-b border-gray-300">
+          <th class="w-[10%] py-2">No</th>
+          <th class="w-[75%] py-2">Title</th>
+          <th class="w-[15%] py-2 text-right">Date</th>
+        </tr>
+      </thead>
+      <tbody class="text-sm text-gray-800" id="news-body">
+        <!-- JS로 채워짐 -->
+      </tbody>
+    </table>
+
+    <!-- 페이지네이션 -->
+    <div class="flex justify-center items-center mt-8 space-x-2 text-sm text-gray-700" id="pagination">
+      <!-- JS로 채워짐 -->
+    </div>
+  </main>
+
+  <div id="footer"></div>
+
+  <!-- 데이터 불러오기 및 출력 -->
   <script>
-    fetch('./header.html') // ← 이렇게 상대경로 명확히 써줘!
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('header').innerHTML = data;
+    const ITEMS_PER_PAGE = 10;
+    let newsData = [];
+    let currentPage = 1;
+
+    // HTML 요소 참조
+    const newsBody = document.getElementById('news-body');
+    const pagination = document.getElementById('pagination');
+
+    // 뉴스 목록 렌더링
+    function renderNews(page) {
+      newsBody.innerHTML = '';
+      const start = (page - 1) * ITEMS_PER_PAGE;
+      const end = start + ITEMS_PER_PAGE;
+      const sliced = newsData.slice(start, end);
+
+      sliced.forEach((item, index) => {
+        const row = document.createElement('tr');
+        row.className = "border-b border-gray-200 hover:bg-gray-50";
+        row.innerHTML = `
+          <td class="py-3">${newsData.length - (start + index)}</td>
+          <td class="py-3 text-blue-900 hover:underlinebreak-words">
+            <a href="News_ct.html?id=${item.id}">${item.title}</a>
+          </td>
+          <td class="py-3 text-right">${item.date}</td>
+        `;
+        newsBody.appendChild(row);
       });
+    }
+
+    // 페이지네이션 렌더링
+    function renderPagination() {
+      pagination.innerHTML = '';
+      const totalPages = Math.ceil(newsData.length / ITEMS_PER_PAGE);
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement('a');
+        btn.href = "#";
+        btn.textContent = i;
+        btn.className = `px-2 py-1 hover:underline ${i === currentPage ? 'font-bold text-blue-700' : ''}`;
+        btn.addEventListener('click', e => {
+          e.preventDefault();
+          currentPage = i;
+          renderNews(currentPage);
+          renderPagination();
+        });
+        pagination.appendChild(btn);
+      }
+    }
+
+    // 데이터 불러오기
+    fetch('data/news.json')
+      .then(res => res.json())
+      .then(data => {
+        newsData = data;
+        renderNews(currentPage);
+        renderPagination();
+      })
+      .catch(err => {
+        newsBody.innerHTML = '<tr><td colspan="3" class="py-4 text-center text-gray-500">뉴스를 불러오지 못했습니다.</td></tr>';
+        console.error('JSON 로드 오류:', err);
+      });
+
+    // 헤더, 푸터 로드
+    fetch('./header.html')
+      .then(res => res.text())
+      .then(html => document.getElementById('header').innerHTML = html);
 
     fetch('./footer.html')
       .then(res => res.text())
-      .then(data => {
-        document.getElementById('footer').innerHTML = data;
-      });
+      .then(html => document.getElementById('footer').innerHTML = html);
   </script>
 </body>
 </html>

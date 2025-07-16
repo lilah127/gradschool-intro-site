@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "title": "신형 태양전지 기술 개발",
+    "date": "2025-07-15",
+    "summary": "연구실에서 개발한 새로운 고효율 태양전지 기술 발표",
+    "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Id alias minus non soluta placeat asperiores. Lorem ipsum dolor sit amet consectetur adipisicing elit. Id alias minus non soluta placeat asperiores. Lorem ipsum dolor sit amet consectetur adipisicing elit. Id alias minus non soluta placeat asperiores. Lorem ipsum dolor sit amet consectetur adipisicing elit. Id alias minus non soluta placeat asperiores."
+  },
+  {
+    "id": 2,
+    "title": "전기전자학회 우수논문상 수상",
+    "date": "2025-07-10",
+    "summary": "성균관대 전기공학과 대학원 소속 연구원이 수상",
+    "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Id alias minus non soluta placeat asperiores. Lorem ipsum dolor sit amet consectetur adipisicing elit. Id alias minus non soluta placeat asperiores. Lorem ipsum dolor sit amet consectetur adipisicing elit. Id alias minus non soluta placeat asperiores. Lorem ipsum dolor sit amet consectetur adipisicing elit. Id alias minus non soluta placeat asperiores."
+  }
+]

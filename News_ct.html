@@ -7,26 +7,109 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="flex flex-col pt-[80px]">
-  <!-- 상단 -->
-  <aside class="w-full bg-white text-white p-2 border-b border-gray-300">
-    <nav class="max-w-screen-xl mx-auto flex items-center justify-between py-4">
-      <!-- 좌측 로고 -->
-      <a href="index.html" class="pl-4 flex-shrink-0 min-w-[150px]">
-        <img src="./images/Logo.png" alt="Logo" class="w-[150px]" />
-      </a>
-      <!-- 우측 메뉴 -->
-      <div class="flex space-x-14">
-        <a href="Members.html" class="hover:text-blue-700 text-[#1A2C75] text-lg">MEMBERS</a>
-        <a href="Research.html" class="hover:text-blue-700 text-[#1A2C75] text-lg">RESEARCH</a>
-        <a href="Admissions.html" class="hover:text-blue-700 text-[#1A2C75] text-lg">ADMISSIONS</a>
-        <a href="News.html" class="hover:text-blue-700 text-[#1A2C75] text-lg">NEWS</a>
-        <a href="Contact.html" class="hover:text-blue-700 text-[#1A2C75] text-lg pr-20">CONTACT</a>
+  <div id="header"></div>
+
+  <!-- Hero 섹션 -->
+  <div class="relative w-full h-[300px]">
+    <img src="./images/main5.jpg" alt="main" class="w-full h-[300px] object-cover object-center"/>
+    <div class="absolute inset-0 flex flex-col justify-end items-end pr-16 pb-10 text-white text-right bg-black/30">
+      <h1 class="text-[26px] font-bold">Welcome to the Energy & Nano Photovoltaics Lab at Sungkyunkwan University.</h1>
+      <p class="text-lg mt-2">Our research aims to advance next-generation energy solutions through nanoscale engineering,
+        <br>with a particular focus on high-efficiency solar cells, smart materials,and integrated photonic systems.</p>
+    </div>
+  </div>
+
+  <!-- 뉴스 본문 -->
+  <main id="news-content" class="px-40 py-20"></main>
+
+  <!-- 페이지 이동 버튼 -->
+<div class="max-w-4xl mx-auto flex justify-between mt-10 px-6 text-sm" id="news-navigation">
+  <!-- JS로 채워짐 -->
+</div>
+
+  <!-- 푸터 -->
+  <div id="footer"></div>
+
+  <!-- 스크립트 -->
+ <script>
+  const urlParams = new URLSearchParams(location.search);
+  const id = parseInt(urlParams.get('id'));
+  const content = document.getElementById('news-content');
+  const navigation = document.getElementById('news-navigation');
+
+  fetch('data/news.json')
+    .then(res => res.json())
+    .then(data => {
+      const index = data.findIndex(item => item.id === id);
+      const news = data[index];
+
+      if (news) {
+        // 내용 표시
+        content.innerHTML = `
+          <h1 class="text-2xl font-bold mb-2">${news.title}</h1>
+          <p class="text-sm text-gray-500 mb-6">${news.date}</p>
+          <p class="text-gray-800 leading-relaxed">${news.content}</p>
+        `;
+
+        // 이전/다음/목록 버튼
+        const prev = data[index - 1];
+        const next = data[index + 1];
+
+        navigation.innerHTML = `
+  <div class="max-w-4xl mx-auto mt-12 px-6">
+    <div class="flex justify-between items-center text-sm text-gray-700 gap-8">
+
+      <div>
+        ${prev ? `
+          <a href="News_ct.html?id=${prev.id}" class="flex items-center space-x-1 hover:text-blue-700">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            <span>이전 글</span>
+          </a>` : `<span class="text-gray-400">이전 글 없음</span>`}
       </div>
-    </nav>
-  </aside>
-  </body>
-<footer class="text-center text-sm text-gray-500 py-6">
-      <p>&copy; 2025 Kim ye-won</p>
-</footer>
+
+      <div>
+        <a href="News.html" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-md border border-gray-300 text-sm text-gray-700">
+          목록으로
+        </a>
+      </div>
+
+      <div>
+        ${next ? `
+          <a href="News_ct.html?id=${next.id}" class="flex items-center space-x-1 hover:text-blue-700">
+            <span>다음 글</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>` : `<span class="text-gray-400">다음 글 없음</span>`}
+      </div>
+
+    </div>
+  </div>
+`;
+      } else {
+        content.innerHTML = `<p class="text-center text-gray-500">해당 뉴스가 존재하지 않습니다.</p>`;
+      }
+    })
+    .catch(err => {
+      content.innerHTML = `<p class="text-center text-gray-500">뉴스 로딩에 실패했습니다.</p>`;
+      console.error(err);
+    });
+</script>
+
+  <script>
+    fetch('./header.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('header').innerHTML = data;
+      });
+
+    fetch('./footer.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      });
+  </script>
 </body>
 </html>

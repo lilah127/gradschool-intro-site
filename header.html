@@ -1,13 +1,27 @@
-<!-- header.html -->
 <aside class="w-full bg-white text-white p-2 border-b border-gray-300 fixed top-0 z-50">
   <nav class="max-w-screen-xl mx-auto flex items-center justify-between py-4">
     <!-- 좌측 로고 -->
     <a href="index.html" class="pl-4 flex-shrink-0 min-w-[150px]">
       <img src="./images/Logo.png" alt="Logo" class="w-[150px]" />
     </a>
+
     <!-- 우측 메뉴 -->
-    <div class="flex space-x-6 md:space-x-14">
-      <a href="Members.html" class="hover:text-blue-700 text-[#1A2C75] text-base md:text-lg">MEMBERS</a>
+    <div class="flex space-x-6 md:space-x-14 items-center">
+      
+      <!-- ✅ 드롭다운 메뉴 -->
+      <div class="relative group">
+        <!-- hover 영역 넓히고 정렬 맞추기 위해 flex 적용 -->
+        <div class="text-[#1A2C75] text-base md:text-lg px-4 py-2 cursor-default hover:text-blue-700">
+          MEMBERS
+        </div>
+        <!-- 드롭다운 항목 -->
+        <div class="absolute top-[100%] left-1/2 -translate-x-1/2 hidden group-hover:block bg-white text-black rounded shadow-lg z-50 min-w-[160px]">
+          <a href="Members.html" class="block px-6 py-2 hover:bg-gray-100 whitespace-nowrap rounded">Professor</a>
+          <a href="Members_st.html" class="block px-6 py-2 hover:bg-gray-100 whitespace-nowrap rounded">Students</a>
+        </div>
+      </div>
+
+      <!-- 일반 메뉴 항목들 -->
       <a href="Research.html" class="hover:text-blue-700 text-[#1A2C75] text-base md:text-lg">RESEARCH</a>
       <a href="Admissions.html" class="hover:text-blue-700 text-[#1A2C75] text-base md:text-lg">ADMISSIONS</a>
       <a href="News.html" class="hover:text-blue-700 text-[#1A2C75] text-base md:text-lg">NEWS</a>
