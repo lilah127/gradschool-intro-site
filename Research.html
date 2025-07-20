@@ -18,47 +18,63 @@
               <br>with a particular focus on high-efficiency solar cells, smart materials,and integrated photonic systems.</p>
           </div>
         </div>
-    <!--글목록-->
-    <div class="px-40 pt-10 leading-relaxed w-300">
-     <a href="https://scholarx.skku.edu/handle/2021.sw.skku/120889" class="font-semibold black-700 underline">Optimization of large-area photovoltaic module frames for lightweight design using structural analysis and non-dominated sorting genetic algorithm II </a>
-     <p class="text-sm font-light">Noh, Yohan; Kim, Junghoon; Jeong, Chaehwan; Lee, Jaehyeong <br>
-      ArticleIssue Date2025CitationSolar Energy Materials and Solar Cells, v.285PublisherElsevier B.V. </p>
-     <p class="font-extralight text-sm text-gray-500">2025.06.15</p>  
-     </div>
-      <div class="px-40 pt-10 leading-relaxed w-300">
-     <a href="https://scholarx.skku.edu/handle/2021.sw.skku/119401" class="font-semibold black-700 underline">Shading-loss enhancement of high-density photovoltaic shingled module for urban building applications</a>
-     <p class="text-sm font-light">Kim, Juhwi; Bae, Jaesung; Jeong, Rakhyun; Lee, Jaehyeong <br>
-      ArticleIssue Date2025CitationSolar Energy, v.287PublisherElsevier Ltd  </p>
-     <p class="font-extralight text-sm text-gray-500">2025.02</p>  
-     </div>
-     <div class="px-40 pt-10 leading-relaxed w-300">
-     <a href="https://scholarx.skku.edu/handle/2021.sw.skku/110534" class="font-semibold black-700 underline">Building-integrated photovoltaic applied Bi-facial photovoltaic module structural design </a>
-     <p class="text-sm font-light">Noh, Yohan; Lee, Jaehyeong <br>
-      ArticleIssue Date2024CitationSolar Energy Materials and Solar Cells, v.269PublisherElsevier B.V. </p>
-     <p class="font-extralight text-sm text-gray-500">2024.05.01</p>  
-     </div>
-     <div class="px-40 pt-10 leading-relaxed w-300">
-     <a href="https://scholarx.skku.edu/handle/2021.sw.skku/120889" class="font-semibold black-700 underline">Optimization of large-area photovoltaic module frames for lightweight design using structural analysis and non-dominated sorting genetic algorithm II </a>
-     <p class="text-sm font-light">Noh, Yohan; Kim, Junghoon; Jeong, Chaehwan; Lee, Jaehyeong <br>
-      ArticleIssue Date2025CitationSolar Energy Materials and Solar Cells, v.285PublisherElsevier B.V. </p>
-     <p class="font-extralight text-sm text-gray-500">2024.04.04</p>  
-     </div>
-      <!--페이지네이션-->
-     <div class="flex justify-center mt-10">
-      <nav class="inline-flex items-center -space-x-px text-sm">
-        <a href="#" class="px-3 py-2 hover:bg-gray-100"><</a>
-        <a href="#" class="px-3 py-2 hover:bg-gray-100">1</a>
-        <a href="#" class="px-3 py-2 hover:bg-gray-100">2</a>
-        <a href="#" class="px-3 py-2 hover:bg-gray-100">3</a>
-        <a href="#" class="px-3 py-2 hover:bg-gray-100">4</a>
-        <a href="#" class="px-3 py-2 hover:bg-gray-100">5</a>
-        <a href="#" class="px-3 py-2 hover:bg-gray-100">></a>
-      </nav>
-    </div>
+    <!-- 글 목록 출력 영역 -->
+    <div id="research-list" class="px-40 pt-10 leading-relaxed w-300"></div>
+
+    <!-- 페이지네이션 출력 영역 -->
+    <div class="flex justify-center mt-10" id="pagination"></div>
    </main>
 <div id="footer"></div>
 
   <script>
+  let currentPage = 1;
+  const itemsPerPage = 4; // ✅ 페이지당 4개로 설정
+
+  fetch('./data/research.json')
+    .then(res => res.json())
+    .then(data => {
+      const totalPages = Math.ceil(data.length / itemsPerPage);
+      const list = document.getElementById('research-list');
+      const pagination = document.getElementById('pagination');
+
+      function renderPage(page) {
+        const start = (page - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const items = data.slice(start, end);
+
+        list.innerHTML = items.map(item => `
+          <div class="mb-10">
+            <a href="${item.link}" target="_blank" class="font-semibold text-black underline">
+              ${item.title}
+            </a>
+            <p class="text-sm font-light">${item.authors}<br>${item.citation}</p>
+            <p class="font-extralight text-sm text-gray-500">${item.date}</p>  
+          </div>
+        `).join('');
+      }
+
+      function renderPagination() {
+        let buttons = '';
+        for (let i = 1; i <= totalPages; i++) {
+          buttons += `
+            <button class="px-3 py-1 mx-1 border rounded ${i === currentPage ? 'bg-blue-100 text-blue-700 font-semibold' : 'hover:bg-gray-100'}"
+              onclick="changePage(${i})">${i}</button>`;
+        }
+        pagination.innerHTML = buttons;
+      }
+
+      // 외부 호출 함수
+      window.changePage = function (page) {
+        currentPage = page;
+        renderPage(currentPage);
+        renderPagination();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // 초기 렌더링
+      renderPage(currentPage);
+      renderPagination();
+    });
     fetch('./header.html') // ← 이렇게 상대경로 명확히 써줘!
       .then(res => res.text())
       .then(data => {

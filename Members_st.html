@@ -144,7 +144,7 @@
     <div id="footer"></div>
 
   <script>
-    fetch('./header.html') // ← 이렇게 상대경로 명확히 써줘!
+    fetch('./header.html')
       .then(res => res.text())
       .then(data => {
         document.getElementById('header').innerHTML = data;
