@@ -64,7 +64,31 @@
       </main>
     <div id="footer"></div>
 
+    
   <script>
+     fetch('./data/news.json')
+  .then(res => res.json())
+  .then(data => {
+    const tbody = document.querySelector('tbody');
+    if (!tbody) return;
+
+    data.slice(0, 3).forEach(news => {
+      const tr = document.createElement('tr');
+      tr.className = 'border-t';
+      tr.innerHTML = `
+        <td class="py-2">
+          <a href="News_ct.html?id=${news.id}" class="hover:underline text-blue-700">
+            ${news.title}
+          </a>
+        </td>
+        <td class="py-2 text-right">${news.date}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  })
+  .catch(err => {
+    console.error('❌ 뉴스 로딩 실패:', err);
+  });
     fetch('./header.html')
       .then(res => res.text())
       .then(data => {
